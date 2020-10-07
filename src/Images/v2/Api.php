@@ -118,6 +118,22 @@ class Api extends AbstractApi
         ];
     }
 
+    public function importImage(): array
+    {
+        return [
+            'method' => 'Post',
+            'path'   => $this->basePath.'images/{id}/import',
+            'params' => [
+                'id'                        => $this->params->idPath(),
+                'contentType'               => $this->params->contentType(),
+                'method'                    => $this->params->method(),
+                'allStores'                 => $this->notRequired($this->params->allStores()),
+                'all_stores_must_succeed'   => $this->notRequired($this->params->allStoresMustSucceed()),
+                'stores'                    => $this->notRequired($this->params->stores())
+            ],
+        ];
+    }
+
     public function getImageData(): array
     {
         return [

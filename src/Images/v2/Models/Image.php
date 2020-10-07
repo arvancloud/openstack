@@ -201,6 +201,16 @@ class Image extends OperatorResource implements Creatable, Listable, Retrievable
         ]);
     }
 
+    public function importImage(array $options)
+    {
+        $options['id'] = $this->id;
+        $options['contentType'] = 'application/json';
+
+        $response = $this->execute($this->api->importImage(), $options);
+
+        return $this->populateFromResponse($response);
+    }
+
     public function downloadData(): StreamInterface
     {
         $response = $this->executeWithState($this->api->getImageData());
