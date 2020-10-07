@@ -211,4 +211,48 @@ class Params extends AbstractParams
             'enum'     => ['pending', 'accepted', 'rejected'],
         ];
     }
+
+    public function method(): array
+    {
+        return [
+            'location'    => self::JSON,
+            'type'        => self::OBJECT_TYPE,
+            'properties' => [
+                'name' => ['type' => self::STRING_TYPE],
+                'uri'  => [
+                    'type'      => self::STRING_TYPE,
+                    'required'  => false,
+                ]
+            ],
+        ];
+    }
+
+    public function stores(): array
+    {
+        return [
+            'location'    => self::JSON,
+            'type'        => self::ARRAY_TYPE,
+            'required'    => false,
+            'items'       => ['type' => self::STRING_TYPE]
+        ];
+    }
+    public function allStores(): array
+    {
+        return [
+            'location'    => self::JSON,
+            'type'        => self::BOOL_TYPE,
+            'required'    => false,
+            'sentAs'      => 'all_stores'
+        ];
+    }
+
+    public function allStoresMustSucceed(): array
+    {
+        return [
+            'location'    => self::JSON,
+            'type'        => self::BOOL_TYPE,
+            'required'    => false,
+            'sentAs'      => 'all_stores_must_succeed'
+        ];
+    }
 }
